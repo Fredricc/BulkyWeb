@@ -2,6 +2,7 @@
 using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
@@ -19,8 +20,14 @@ namespace BulkyWeb.Areas.Admin.Controllers
         {
             List<Product> objProductsList = _unitOfWork.Product.GetAll().ToList();
 
-
-
+            //Projections in EF Core
+            IEnumerable<SelectListItem> CategoryList =
+                _unitOfWork.Category.GetAll()
+                .Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
             return View(objProductsList);
         }
 
