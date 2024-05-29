@@ -20,19 +20,23 @@ namespace BulkyWeb.Areas.Admin.Controllers
         {
             List<Product> objProductsList = _unitOfWork.Product.GetAll().ToList();
 
-            //Projections in EF Core
-            IEnumerable<SelectListItem> CategoryList =
-                _unitOfWork.Category.GetAll()
-                .Select(u => new SelectListItem
-            {
-                Text = u.Name,
-                Value = u.Id.ToString()
-            });
+           
             return View(objProductsList);
         }
 
         public IActionResult Create()
         {
+            //Projections in EF Core
+            IEnumerable<SelectListItem> CategoryList =
+                _unitOfWork.Category.GetAll()
+                .Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });
+            //ViewBag.CategoryList = CategoryList;
+            ViewData["CategoryList"] = CategoryList;
+
             return View();
         }
 
