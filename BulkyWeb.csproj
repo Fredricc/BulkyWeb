@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<PackageReference Include="jQuery" Version="3.7.1" />
+	<PackageReference Include="jquery.datatables" Version="1.10.15" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0-preview.4.24267.1">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
