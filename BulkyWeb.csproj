@@ -25,6 +25,7 @@
 
 	<ItemGroup>
 	  <Folder Include="wwwroot\images\product\" />
+	  <Folder Include="wwwroot\lib\dataTable\" />
 	</ItemGroup>
 
 </Project>
