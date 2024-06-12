@@ -1,6 +1,7 @@
 using Bulky.DataAccess.Data;
 using Bulky.DataAccess.Repository;
 using Bulky.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options
+.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+IdentityBuilder identityBuilder = builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddDefaultUI(UIFramework.Bootstrap5)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+//builder.Services.AddIdentityCore<IdentityUser>()
+//    .AddRoles<IdentityRole>()
+//    .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<IdentityUser, IdentityRole>>()
+//    .AddEntityFrameworkStores<ApplicationDbContext>()
+//    .AddDefaultTokenProviders()
+//    .AddDefaultUI();
+
 
 builder.Services.AddScoped < IUnitOfWork, UnitOfWork>();
 
@@ -26,6 +40,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
