@@ -12,8 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options
 .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-IdentityBuilder identityBuilder = builder.Services.AddDefaultIdentity<IdentityUser>()
-    .AddDefaultUI(UIFramework.Bootstrap5)
+builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 //builder.Services.AddIdentityCore<IdentityUser>()
