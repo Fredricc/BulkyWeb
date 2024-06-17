@@ -58,12 +58,32 @@ namespace BulkyWeb.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Full Name")]
+            public string Name { get; set; }
+
+            [Display(Name = "Street Address")]
+            public string StreetAddress { get; set; }
+
+            [Display(Name = "State")]
+            public string State { get; set; }
+
+            [Display(Name = "City")]
+            public string City { get; set; }
+
+            [Display(Name = "Post Code")]
+            public string PostalCode { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            //var name = await _userManager.GetNameAsync(user);
+            //var streetAddress = await _userManager.GetStreetAddressAsync(user);
+            //var state = await _userManager.GetStateAsync(user);
+            //var city = await _userManager.GetCityAsync(user);
+            //var postalCode = await _userManager.GetPostalCodeAsync(user);
 
             Username = userName;
 
@@ -109,6 +129,61 @@ namespace BulkyWeb.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+
+            //var name = await _userManager.GetNameAsync(user);
+            //if (Input.Name != name)
+            //{
+            //    var setNameResult = await _userManager.SetNameAsync(user, Input.Name);
+            //    if (!setNameResult.Succeeded)
+            //    {
+            //        StatusMessage = "Unexpected error when trying to set Name.";
+            //        return RedirectToPage();
+            //    }
+            //}
+
+            //var streetAddress = await _userManager.GetStreetAddressAsync(user);
+            //if (Input.StreetAddress != streetAddress)
+            //{
+            //    var setStreetAddressResult = await _userManager.setStreetAddressAsync(user, Input.StreetAddress);
+            //    if (!setStreetAddress.Succeeded)
+            //    {
+            //        StatusMessage = "Unexpected error when trying to set street address.";
+            //        return RedirectToPage();
+            //    }
+            //}
+
+            //var state = await _userManager.GetStateAsync(user);
+            //if (Input.State != state)
+            //{
+            //    var setStateResult = await _userManager.SetStateAsync(user, Input.State);
+            //    if (!setStateResult.Succeeded)
+            //    {
+            //        StatusMessage = "Unexpected error when trying to set State.";
+            //        return RedirectToPage();
+            //    }
+            //}
+
+            //var city = await _userManager.GetCityAsync(user);
+            //if (Input.City != city)
+            //{
+            //    var setCityResult = await _userManager.SetCityAsync(user, Input.City);
+            //    if (!setCityResult.Succeeded)
+            //    {
+            //        StatusMessage = "Unexpected error when trying to set City.";
+            //        return RedirectToPage();
+            //    }
+            //}
+
+            //var postalCode = await _userManager.GetPostalCodeAsync(user);
+            //if (Input.PostalCode != postalCode)
+            //{
+            //    var setPostalCodeResult = await _userManager.SetPostalCodeAsync(user, Input.PostalCode);
+            //    if (!setPostalCodeResult.Succeeded)
+            //    {
+            //        StatusMessage = "Unexpected error when trying to set Postal Code.";
+            //        return RedirectToPage();
+            //    }
+            //}
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
