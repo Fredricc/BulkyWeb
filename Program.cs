@@ -20,9 +20,9 @@ builder.Services.AddIdentity<IdentityUser,IdentityRole>()
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = $"/Identiy/Account/Login";
-    options.LogoutPath = $"/Identiy/Account/Logout";
-    options.AccessDeniedPath = $"/Identiy/Account/AccessDenied";
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 });
 
 builder.Services.AddRazorPages();
