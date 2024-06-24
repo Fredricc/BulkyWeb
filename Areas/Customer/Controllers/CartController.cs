@@ -37,13 +37,18 @@ namespace BulkyWeb.Areas.Customer.Controllers
             return View(ShoppingCartVM);
         }
 
+        public IActionResult Summary()
+        {
+            return View();
+        }
+
         //Increase Quantity in shopping cart
         public IActionResult Plus(int cartId)
         {
             var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
             cartFromDb.Count += 1;
-            _unitOfWork.ShoppingCart.Add(cartFromDb);
-            _unitOfWork.Save();
+            _unitOfWork.ShoppingCart.Update(cartFromDb);
+            _unitOfWork.Save(); 
             return RedirectToAction(nameof(Index));
         }
 
@@ -59,8 +64,8 @@ namespace BulkyWeb.Areas.Customer.Controllers
             }
             else
             {
-                cartFromDb.Count -= 1;
-                _unitOfWork.ShoppingCart.Add(cartFromDb);
+                cartFromDb.Count  -= 1;
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
             }
 
             _unitOfWork.Save();
