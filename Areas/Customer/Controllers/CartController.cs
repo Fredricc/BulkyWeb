@@ -29,7 +29,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
                 OrderHeader= new()
             };
 
-            foreach (var cart in ShoppingCartVM.ShoppingCartList)
+            foreach (var cart in  ShoppingCartVM.ShoppingCartList)
             {
                 cart.Price = GetPriceBasedOnQuantity(cart);
                 ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
